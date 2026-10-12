@@ -12,8 +12,19 @@
     { id: 'evs-1', name: 'EVS 1', className: 'Class 4', file: 'question-banks/evs1.json' },
     { id: 'evs-2', name: 'EVS 2', className: 'Class 4', file: 'question-banks/evs2.json' }
   ];
+  const SUBJECT_STYLES = {
+    english: { icon: '🔤', color: 'blue', hint: 'Stories, words & grammar' },
+    marathi: { icon: '📖', color: 'purple', hint: 'मराठी वाचन आणि व्याकरण' },
+    hindi: { icon: '🪷', color: 'pink', hint: 'हिंदी भाषा और व्याकरण' },
+    mathematics: { icon: '🔢', color: 'yellow', hint: 'Numbers, shapes & sums' },
+    computer: { icon: '💻', color: 'teal', hint: 'Explore the digital world' },
+    'evs-1': { icon: '🌱', color: 'green', hint: 'Plants, animals & nature' },
+    'evs-2': { icon: '🏡', color: 'orange', hint: 'People, places & daily life' }
+  };
   const els = Object.fromEntries([
-    'alertArea', 'heroQuestionCount', 'subjectSelect', 'paperSubjectSelect', 'jsonUpload',
+    'alertArea', 'heroQuestionCount', 'questionCountSubject', 'subjectCards', 'lastResultCard',
+    'lastResultTitle', 'lastResultDate', 'lastResultScore', 'connectionBanner', 'connectionText',
+    'installAppBtn', 'subjectSelect', 'paperSubjectSelect', 'jsonUpload',
     'setupPanel', 'generatorPanel', 'examPaper', 'questionCountSelect', 'marksPerQuestion',
     'timeAllowed', 'paperNotice', 'generatePaperBtn', 'printPaperBtn', 'printAnswerKeyBtn',
     'quizPanel', 'resultPanel', 'quizSubtitle', 'quizTitle', 'studentGreeting', 'progressLabel',
@@ -25,7 +36,8 @@
 
   const state = {
     data: null, activeBankId: null, bankCache: new Map(), subject: null, questions: [], originalQuestions: [], answers: new Map(),
-    checked: new Map(), index: 0, mode: 'practice', result: null
+    checked: new Map(), index: 0, mode: 'practice', result: null, submitted: false,
+    installPrompt: null, lastResult: null
   };
   const TYPE_LABELS = {
     mcq: 'Multiple choice', 'fill-blank': 'Fill in the blank', 'true-false': 'True or false',
@@ -152,14 +164,30 @@
 
   async function loadData() {
     populateSubjects();
+    renderSubjectCards();
+    loadLastResult();
+    updateConnectionStatus();
+    els.startBtn.disabled = true;
+    els.generatePaperBtn.disabled = true;
+    els.questionCountSubject.textContent = 'Loading English questions…';
     try {
-      await activateSubjectBank('english');
-      updateCount();
+      await loadSubjectBank(SUBJECTS[0]);
+      if (els.subjectSelect.value === 'english') {
+        await activateSubjectBank('english');
+      }
+      els.startBtn.disabled = false;
+      els.generatePaperBtn.disabled = false;
     } catch (error) {
-      state.data = null;
-      state.activeBankId = null;
-      updateCount();
-      alertMsg(`Could not load the English question bank: ${error.message} Run this folder through a local server or load a subject JSON file.`, 'warning');
+      if (els.subjectSelect.value === 'english') {
+        state.data = null;
+        state.activeBankId = null;
+        updateCount();
+        alertMsg(`Could not load the English question bank: ${error.message} Run this folder through a local server or load a subject JSON file.`, 'warning');
+      }
+      if (state.data) {
+        els.startBtn.disabled = false;
+        els.generatePaperBtn.disabled = false;
+      }
     }
   }
 
@@ -168,7 +196,12 @@
   }
 
   function updateCount() {
-    els.heroQuestionCount.textContent = state.data ? String(allQuestions().length) : '—';
+    const count = state.data ? allQuestions().length : null;
+    const subject = state.data?.subjects[0];
+    els.heroQuestionCount.textContent = count === null ? '—' : String(count);
+    els.questionCountSubject.textContent = subject ? `${subject.name} · ${count} questions` : 'Choose a subject to begin';
+    els.heroQuestionCount.setAttribute('aria-busy', String(count === null));
+    if (subject) updateSelectedSubjectCard(subject.id);
   }
 
   function populateSubjects(selectedSubjectName) {
@@ -180,6 +213,64 @@
       const subject = SUBJECTS.find(item => item.name === selectedSubjectName);
       if (subject) select.value = subject.id;
     });
+    updateSelectedSubjectCard(els.subjectSelect.value);
+  }
+
+  function updateSelectedSubjectCard(subjectId) {
+    els.subjectCards.querySelectorAll('[data-subject-id]').forEach(card => {
+      const selected = card.dataset.subjectId === subjectId;
+      card.classList.toggle('subject-card-selected', selected);
+      if (selected) card.setAttribute('aria-current', 'true');
+      else card.removeAttribute('aria-current');
+    });
+  }
+
+  function renderSubjectCards() {
+    els.subjectCards.innerHTML = SUBJECTS.map(subject => {
+      const style = SUBJECT_STYLES[subject.id] || { icon: '📘', color: 'blue', hint: 'Your own question bank' };
+      return `<article class="subject-card subject-${style.color}" data-subject-id="${esc(subject.id)}"><div class="subject-icon" aria-hidden="true">${style.icon}</div><div class="subject-card-copy"><h3>${esc(subject.name)}</h3><p>${esc(style.hint)}</p></div><button type="button" class="subject-start-btn" data-start-subject="${esc(subject.id)}" aria-label="Start learning ${esc(subject.name)}">Start learning <span aria-hidden="true">→</span></button></article>`;
+    }).join('');
+  }
+
+  function loadLastResult() {
+    try {
+      const stored = localStorage.getItem('smartRevisionLastResult');
+      if (!stored) return;
+      const result = JSON.parse(stored);
+      if (!result || typeof result.subject !== 'string' || !Number.isFinite(result.percentage) ||
+          !Number.isFinite(Date.parse(result.completedAt))) {
+        throw new Error('Saved result summary is invalid.');
+      }
+      state.lastResult = result;
+      renderLastResult();
+    } catch (error) {
+      console.warn('Could not read the saved result summary.', error);
+      alertMsg('Your saved progress summary could not be read. You can still continue practising.', 'warning');
+    }
+  }
+
+  function renderLastResult() {
+    if (!state.lastResult) return;
+    const result = state.lastResult;
+    els.lastResultCard.classList.remove('d-none');
+    els.lastResultTitle.textContent = `${result.subject} · ${result.correctCount}/${result.totalItems} correct`;
+    els.lastResultDate.textContent = `Last practice: ${new Date(result.completedAt).toLocaleString()}`;
+    els.lastResultScore.textContent = `${result.percentage}%`;
+  }
+
+  function updateConnectionStatus() {
+    const online = navigator.onLine;
+    els.connectionBanner.classList.toggle('is-offline', !online);
+    els.connectionText.textContent = online
+      ? 'You’re online · your learning is ready'
+      : 'You’re offline · previously loaded questions are available';
+  }
+
+  function selectSubject(id) {
+    if (!SUBJECTS.some(subject => subject.id === id)) return;
+    els.subjectSelect.value = id;
+    els.paperSubjectSelect.value = id;
+    populateSubjects(SUBJECTS.find(subject => subject.id === id).name);
   }
 
   function selectedSubject(select = els.subjectSelect) {
@@ -214,6 +305,8 @@
 
   async function handleSubjectChange(select) {
     const subject = selectedSubject(select);
+    if (select === els.subjectSelect) els.startBtn.disabled = true;
+    if (select === els.paperSubjectSelect) els.generatePaperBtn.disabled = true;
     if (select === els.paperSubjectSelect) {
       els.examPaper.classList.add('d-none');
       els.printPaperBtn.classList.add('d-none');
@@ -225,6 +318,8 @@
         state.data = bank;
         state.activeBankId = subject.id;
         updateCount();
+        if (select === els.subjectSelect) els.startBtn.disabled = false;
+        if (select === els.paperSubjectSelect) els.generatePaperBtn.disabled = false;
         els.alertArea.replaceChildren();
       }
     } catch (error) {
@@ -232,12 +327,14 @@
         state.data = null;
         state.activeBankId = null;
         updateCount();
+        if (select === els.subjectSelect) els.startBtn.disabled = true;
+        if (select === els.paperSubjectSelect) els.generatePaperBtn.disabled = true;
         alertMsg(`Could not load ${subject.name}: ${error.message}`, 'danger');
       }
     }
   }
 
-  async function startQuiz(subset = null) {
+  async function startQuiz(subset = null, modeOverride = null) {
     const subjectConfig = state.subject && subset
       ? SUBJECTS.find(item => item.name === state.subject.name)
       : selectedSubject();
@@ -256,8 +353,10 @@
     state.answers = new Map();
     state.checked = new Map();
     state.index = 0;
-    state.mode = document.querySelector('input[name="mode"]:checked')?.value || 'practice';
+    state.mode = modeOverride || document.querySelector('input[name="mode"]:checked')?.value || 'practice';
     state.result = null;
+    state.submitted = false;
+    els.submitBtn.disabled = false;
     els.setupPanel.classList.add('d-none');
     els.generatorPanel.classList.add('d-none');
     els.resultPanel.classList.add('d-none');
@@ -279,7 +378,8 @@
     const checked = state.checked.get(question.id);
     const locked = Boolean(checked) && state.mode !== 'exam';
     const total = state.questions.length;
-    els.progressLabel.textContent = `Question ${state.index + 1} of ${total}`;
+    const answered = answeredQuestionCount();
+    els.progressLabel.textContent = `Question ${state.index + 1} of ${total} · ${answered} answered`;
     const progress = Math.round((state.index + 1) / total * 100);
     els.progressBar.style.width = `${progress}%`;
     els.progressBar.parentElement.setAttribute('aria-valuenow', String(progress));
@@ -299,8 +399,8 @@
         input = `<input class="form-control answer-input" data-item="${index}" value="${esc(value)}" placeholder="Type your answer..." ${locked ? 'disabled' : ''}>`;
       }
       const resultClass = itemResult ? (itemResult.correct ? 'correct-item' : 'wrong-item') : '';
-      const correctText = itemResult && !itemResult.correct
-        ? `<div class="small text-danger mt-2">Correct answer: ${esc(displayAnswer(item))}</div>` : '';
+        const correctText = itemResult
+          ? `<div class="answer-feedback ${itemResult.correct ? 'text-success' : 'text-danger'} mt-2">${itemResult.correct ? '✓ Correct answer:' : 'Correct answer:'} ${esc(displayAnswer(item))}</div>` : '';
       return `<div class="question-item ${resultClass}"><div class="item-prompt">${esc(item.prompt)}</div>${input}${correctText}</div>`;
     }).join('');
 
@@ -368,7 +468,18 @@
         total += result.total;
       }
     });
-    els.scoreLabel.textContent = `Correct answers: ${correct}${total ? ` / ${total}` : ''}`;
+    const answered = answeredQuestionCount();
+    const unanswered = Math.max(0, state.questions.length - answered);
+    els.scoreLabel.textContent = state.mode === 'exam'
+      ? `Answered: ${answered} · Unanswered: ${unanswered}`
+      : `Answered: ${answered} · Correct checked: ${correct}${total ? ` / ${total}` : ''}`;
+  }
+
+  function answeredQuestionCount() {
+    return state.questions.filter(question => {
+      const saved = state.answers.get(question.id) || {};
+      return question.items.every((item, index) => String(saved[index] ?? '').trim() !== '');
+    }).length;
   }
 
   function next() {
@@ -386,6 +497,14 @@
   }
 
   function submit() {
+    if (state.submitted || state.result) return;
+    const unanswered = state.questions.length - answeredQuestionCount();
+    if (state.mode === 'exam' &&
+        !window.confirm(unanswered
+          ? `There ${unanswered === 1 ? 'is' : 'are'} ${unanswered} unanswered question${unanswered === 1 ? '' : 's'}. Submit your exam anyway?`
+          : 'Are you ready to submit your exam?')) return;
+    state.submitted = true;
+    els.submitBtn.disabled = true;
     state.questions.forEach(question => {
       if (!state.checked.has(question.id) || state.mode === 'exam') {
         state.checked.set(question.id, evaluate(question));
@@ -408,6 +527,19 @@
       totalItems: answers.length, correctCount, wrongCount: answers.length - correctCount,
       percentage: answers.length ? Math.round(correctCount / answers.length * 100) : 0, answers
     };
+    state.lastResult = {
+      subject: state.result.subject,
+      completedAt: state.result.completedAt,
+      correctCount: state.result.correctCount,
+      totalItems: state.result.totalItems,
+      percentage: state.result.percentage
+    };
+    try {
+      localStorage.setItem('smartRevisionLastResult', JSON.stringify(state.lastResult));
+    } catch (error) {
+      console.warn('Could not save the result summary on this device.', error);
+    }
+    renderLastResult();
     showResults();
   }
 
@@ -547,6 +679,49 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
+  async function requestInstall() {
+    if (!state.installPrompt) return;
+    state.installPrompt.prompt();
+    const choice = await state.installPrompt.userChoice;
+    if (choice.outcome === 'accepted') els.installAppBtn.classList.add('d-none');
+    state.installPrompt = null;
+  }
+
+  function setupInstallation() {
+    window.addEventListener('beforeinstallprompt', event => {
+      event.preventDefault();
+      state.installPrompt = event;
+      if (!window.matchMedia('(display-mode: standalone)').matches && !navigator.standalone) {
+        els.installAppBtn.classList.remove('d-none');
+      }
+    });
+    window.addEventListener('appinstalled', () => {
+      state.installPrompt = null;
+      els.installAppBtn.classList.add('d-none');
+      els.connectionText.textContent = 'Smart Revision is installed on this device';
+    });
+    els.installAppBtn.addEventListener('click', requestInstall);
+  }
+
+  async function registerServiceWorker() {
+    if (!('serviceWorker' in navigator)) {
+      console.info('Service workers are not supported in this browser.');
+      return;
+    }
+    if (!window.isSecureContext) {
+      console.info('PWA offline features require HTTPS or localhost.');
+      return;
+    }
+    try {
+      await navigator.serviceWorker.register('./service-worker.js', { scope: './' });
+    } catch (error) {
+      console.warn('The offline worker could not be registered.', error);
+      els.connectionText.textContent = navigator.onLine
+        ? 'Online · offline setup is unavailable in this browser'
+        : 'Offline · reconnect to finish setting up the app';
+    }
+  }
+
   async function uploadJson(event) {
     const files = Array.from(event.target.files || []);
     if (!files.length) return;
@@ -586,6 +761,15 @@
 
   els.subjectSelect.addEventListener('change', () => handleSubjectChange(els.subjectSelect));
   els.paperSubjectSelect.addEventListener('change', () => handleSubjectChange(els.paperSubjectSelect));
+  els.subjectCards.addEventListener('click', event => {
+    const button = event.target.closest('[data-start-subject]');
+    if (!button) return;
+    selectSubject(button.dataset.startSubject);
+    startQuiz(null, 'practice');
+  });
+  document.querySelectorAll('[data-mode-shortcut]').forEach(button => {
+    button.addEventListener('click', () => startQuiz(null, button.dataset.modeShortcut));
+  });
   els.startBtn.addEventListener('click', () => startQuiz());
   els.jsonUpload.addEventListener('change', uploadJson);
   els.downloadTemplateBtn.addEventListener('click', () => download('questions-template.json', JSON.stringify(template, null, 2)));
@@ -605,6 +789,10 @@
   els.printPaperBtn.addEventListener('click', printPaper);
   els.printAnswerKeyBtn.addEventListener('click', printAnswerKey);
   window.addEventListener('afterprint', () => document.body.classList.remove('print-answer-key', 'print-report'));
+  window.addEventListener('online', updateConnectionStatus);
+  window.addEventListener('offline', updateConnectionStatus);
+  setupInstallation();
+  registerServiceWorker();
 
   loadData();
 })();
