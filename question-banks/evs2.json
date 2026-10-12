@@ -1,0 +1,67 @@
+{
+  "appName": "Smart Revision & Exam Practice",
+  "version": 1,
+  "description": "Class 4 EVS 2 demo question bank. Replace these sample questions with textbook content.",
+  "settings": {
+    "caseInsensitive": true,
+    "trimAnswers": true,
+    "showCorrectAnswerAfterCheck": true,
+    "shuffleQuestions": false
+  },
+  "subjects": [
+    {
+      "id": "evs-2-class-4",
+      "name": "EVS 2",
+      "className": "Class 4",
+      "board": "State Board",
+      "chapters": [
+        {
+          "id": "evs-2-demo",
+          "name": "Demo Practice",
+          "questions": [
+            {
+              "id": "evs2-q1",
+              "type": "short-answer",
+              "question": "Name one person in your family who helps care for you.",
+              "items": [{"prompt": "Family member", "answer": "Mother", "acceptedAnswers": ["Mother", "Father", "Guardian", "Grandparent"]}],
+              "marks": 1,
+              "chapterTag": "Family"
+            },
+            {
+              "id": "evs2-q2",
+              "type": "short-answer",
+              "question": "Which vehicle can carry many people along city roads?",
+              "items": [{"prompt": "Vehicle", "answer": "Bus"}],
+              "marks": 1,
+              "chapterTag": "Transport"
+            },
+            {
+              "id": "evs2-q3",
+              "type": "fill-blank",
+              "question": "We can communicate with a friend who lives far away by making a _____.",
+              "items": [{"prompt": "Complete the sentence", "answer": "phone call", "acceptedAnswers": ["phone call", "call"]}],
+              "marks": 1,
+              "chapterTag": "Communication"
+            },
+            {
+              "id": "evs2-q4",
+              "type": "true-false",
+              "question": "We should wash our hands before eating.",
+              "items": [{"prompt": "True or false?", "answer": "True"}],
+              "marks": 1,
+              "chapterTag": "Health and safety"
+            },
+            {
+              "id": "evs2-q5",
+              "type": "short-answer",
+              "question": "What should you do before crossing a road?",
+              "items": [{"prompt": "A safe action", "answer": "Look both ways", "acceptedAnswers": ["Look both ways", "Stop, look both ways, and listen"]}],
+              "marks": 1,
+              "chapterTag": "Road safety"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

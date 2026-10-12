@@ -1,0 +1,67 @@
+{
+  "appName": "Smart Revision & Exam Practice",
+  "version": 1,
+  "description": "Class 4 Hindi demo question bank. Replace these sample questions with textbook content.",
+  "settings": {
+    "caseInsensitive": true,
+    "trimAnswers": true,
+    "showCorrectAnswerAfterCheck": true,
+    "shuffleQuestions": false
+  },
+  "subjects": [
+    {
+      "id": "hindi-class-4",
+      "name": "Hindi",
+      "className": "Class 4",
+      "board": "State Board",
+      "chapters": [
+        {
+          "id": "hindi-demo",
+          "name": "Demo Practice",
+          "questions": [
+            {
+              "id": "hi-q1",
+              "type": "word-meanings",
+              "question": "‘सूरज’ का एक पर्यायवाची शब्द लिखिए।",
+              "items": [{"prompt": "सूरज", "answer": "रवि", "acceptedAnswers": ["रवि", "सूर्य"]}],
+              "marks": 1,
+              "chapterTag": "पर्यायवाची शब्द"
+            },
+            {
+              "id": "hi-q2",
+              "type": "opposite",
+              "question": "‘दिन’ का विलोम शब्द लिखिए।",
+              "items": [{"prompt": "दिन", "answer": "रात"}],
+              "marks": 1,
+              "chapterTag": "विलोम शब्द"
+            },
+            {
+              "id": "hi-q3",
+              "type": "fill-blank",
+              "question": "रिक्त स्थान में सही शब्द भरिए।",
+              "items": [{"prompt": "हम रोज़ _____ जाते हैं।", "answer": "विद्यालय", "acceptedAnswers": ["विद्यालय", "स्कूल"]}],
+              "marks": 1,
+              "chapterTag": "रिक्त स्थान"
+            },
+            {
+              "id": "hi-q4",
+              "type": "true-false",
+              "question": "‘किताब’ एक संज्ञा है।",
+              "items": [{"prompt": "सही या गलत?", "answer": "True", "acceptedAnswers": ["True", "सही", "ठीक"]}],
+              "marks": 1,
+              "chapterTag": "संज्ञा"
+            },
+            {
+              "id": "hi-q5",
+              "type": "sentence",
+              "question": "‘पेड़’ शब्द का उपयोग करके एक सरल वाक्य लिखिए।",
+              "items": [{"prompt": "पेड़", "answer": "पेड़ हमें छाया देता है।", "acceptedAnswers": ["पेड़ हमें छाया देता है।", "हम पेड़ लगाते हैं।"]}],
+              "marks": 1,
+              "chapterTag": "वाक्य रचना"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

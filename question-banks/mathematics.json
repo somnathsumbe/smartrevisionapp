@@ -1,0 +1,67 @@
+{
+  "appName": "Smart Revision & Exam Practice",
+  "version": 1,
+  "description": "Class 4 Mathematics demo question bank. Replace these sample questions with textbook content.",
+  "settings": {
+    "caseInsensitive": true,
+    "trimAnswers": true,
+    "showCorrectAnswerAfterCheck": true,
+    "shuffleQuestions": false
+  },
+  "subjects": [
+    {
+      "id": "mathematics-class-4",
+      "name": "Mathematics",
+      "className": "Class 4",
+      "board": "State Board",
+      "chapters": [
+        {
+          "id": "mathematics-demo",
+          "name": "Demo Practice",
+          "questions": [
+            {
+              "id": "math-q1",
+              "type": "short-answer",
+              "question": "Add: 248 + 135 = _____.",
+              "items": [{"prompt": "248 + 135", "answer": "383"}],
+              "marks": 1,
+              "chapterTag": "Addition"
+            },
+            {
+              "id": "math-q2",
+              "type": "fill-blank",
+              "question": "Subtract: 600 − 275 = _____.",
+              "items": [{"prompt": "600 − 275", "answer": "325"}],
+              "marks": 1,
+              "chapterTag": "Subtraction"
+            },
+            {
+              "id": "math-q3",
+              "type": "short-answer",
+              "question": "Multiply: 9 × 7 = _____.",
+              "items": [{"prompt": "9 × 7", "answer": "63"}],
+              "marks": 1,
+              "chapterTag": "Multiplication"
+            },
+            {
+              "id": "math-q4",
+              "type": "short-answer",
+              "question": "Divide: 56 ÷ 8 = _____.",
+              "items": [{"prompt": "56 ÷ 8", "answer": "7"}],
+              "marks": 1,
+              "chapterTag": "Division"
+            },
+            {
+              "id": "math-q5",
+              "type": "short-answer",
+              "question": "Riya has 3 bags with 5 apples in each. How many apples does she have altogether?",
+              "items": [{"prompt": "Number of apples", "answer": "15"}],
+              "marks": 1,
+              "chapterTag": "Word problem"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

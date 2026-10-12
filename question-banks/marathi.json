@@ -1,0 +1,67 @@
+{
+  "appName": "Smart Revision & Exam Practice",
+  "version": 1,
+  "description": "Class 4 Marathi demo question bank. Replace these sample questions with textbook content.",
+  "settings": {
+    "caseInsensitive": true,
+    "trimAnswers": true,
+    "showCorrectAnswerAfterCheck": true,
+    "shuffleQuestions": false
+  },
+  "subjects": [
+    {
+      "id": "marathi-class-4",
+      "name": "Marathi",
+      "className": "Class 4",
+      "board": "State Board",
+      "chapters": [
+        {
+          "id": "marathi-demo",
+          "name": "Demo Practice",
+          "questions": [
+            {
+              "id": "mr-q1",
+              "type": "word-meanings",
+              "question": "‘सूर्य’ या शब्दाचा समानार्थी शब्द लिहा.",
+              "items": [{"prompt": "सूर्य", "answer": "रवि", "acceptedAnswers": ["रवि", "भास्कर"]}],
+              "marks": 1,
+              "chapterTag": "समानार्थी शब्द"
+            },
+            {
+              "id": "mr-q2",
+              "type": "opposite",
+              "question": "‘मोठा’ या शब्दाचा विरुद्धार्थी शब्द लिहा.",
+              "items": [{"prompt": "मोठा", "answer": "लहान"}],
+              "marks": 1,
+              "chapterTag": "विरुद्धार्थी शब्द"
+            },
+            {
+              "id": "mr-q3",
+              "type": "fill-blank",
+              "question": "रिकाम्या जागी योग्य शब्द लिहा.",
+              "items": [{"prompt": "आपण शाळेत _____ शिकतो.", "answer": "ज्ञान"}],
+              "marks": 1,
+              "chapterTag": "व्याकरण"
+            },
+            {
+              "id": "mr-q4",
+              "type": "true-false",
+              "question": "‘फूल’ हा नाम शब्द आहे.",
+              "items": [{"prompt": "बरोबर की चूक?", "answer": "True", "acceptedAnswers": ["True", "बरोबर", "खरे"]}],
+              "marks": 1,
+              "chapterTag": "नाम"
+            },
+            {
+              "id": "mr-q5",
+              "type": "sentence",
+              "question": "‘पुस्तक’ या शब्दाचा वापर करून एक सोपे वाक्य लिहा.",
+              "items": [{"prompt": "पुस्तक", "answer": "माझे पुस्तक नवीन आहे.", "acceptedAnswers": ["माझे पुस्तक नवीन आहे.", "मी पुस्तक वाचतो.", "मी पुस्तक वाचते."]}],
+              "marks": 1,
+              "chapterTag": "वाक्यरचना"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

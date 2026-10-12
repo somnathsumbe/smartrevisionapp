@@ -1,0 +1,469 @@
+{
+  "appName": "Smart Revision & Exam Practice",
+  "version": 1,
+  "description": "Class 4 English revision question bank based on the supplied revision paper.",
+  "settings": {
+    "caseInsensitive": true,
+    "trimAnswers": true,
+    "showCorrectAnswerAfterCheck": true,
+    "shuffleQuestions": false
+  },
+  "subjects": [
+    {
+      "id": "english-class-4",
+      "name": "English",
+      "className": "Class 4",
+      "board": "State Board",
+      "chapters": [
+        {
+          "id": "english-revision-paper",
+          "name": "Revision Paper",
+          "questions": [
+            {
+              "id": "q2",
+              "type": "fill-blank",
+              "question": "Underline the proper noun.",
+              "items": [
+                {
+                  "prompt": "_____ was very excited.",
+                  "answer": "Charu",
+                  "acceptedAnswers": [
+                    "Charu",
+                    "CHARU"
+                  ]
+                }
+              ],
+              "marks": 1,
+              "chapterTag": "Grammar"
+            },
+            {
+              "id": "q3",
+              "type": "word-meanings",
+              "question": "Give the meanings of the following words.",
+              "items": [
+                {
+                  "prompt": "Gentle",
+                  "answer": "Kind and calm",
+                  "acceptedAnswers": [
+                    "kind and calm"
+                  ]
+                },
+                {
+                  "prompt": "Response",
+                  "answer": "Reply"
+                },
+                {
+                  "prompt": "Horns",
+                  "answer": "Hard, pointed growths on an animal’s head"
+                },
+                {
+                  "prompt": "Descend",
+                  "answer": "Come down"
+                },
+                {
+                  "prompt": "Canopy",
+                  "answer": "A cover like a roof"
+                },
+                {
+                  "prompt": "Multiple",
+                  "answer": "More than one"
+                },
+                {
+                  "prompt": "Arboreal",
+                  "answer": "Living in trees"
+                },
+                {
+                  "prompt": "Diversity",
+                  "answer": "A wide variety"
+                },
+                {
+                  "prompt": "Swirls",
+                  "answer": "Circular twists or turns"
+                },
+                {
+                  "prompt": "Waxy",
+                  "answer": "Like wax"
+                },
+                {
+                  "prompt": "Shades",
+                  "answer": "Colours"
+                },
+                {
+                  "prompt": "Wrapper",
+                  "answer": "A cover"
+                },
+                {
+                  "prompt": "Tad",
+                  "answer": "A little"
+                },
+                {
+                  "prompt": "Eventually",
+                  "answer": "Finally"
+                }
+              ],
+              "marks": 14,
+              "chapterTag": "Vocabulary"
+            },
+            {
+              "id": "q4",
+              "type": "fill-blank",
+              "question": "Complete the lines of the poem.",
+              "items": [
+                {
+                  "prompt": "Where do you come from, _____",
+                  "answer": "my dear son?",
+                  "acceptedAnswers": [
+                    "my dear son?",
+                    "my dear son"
+                  ]
+                },
+                {
+                  "prompt": "Rising like a hero, bold and bright, _____",
+                  "answer": "You chase away the darkness of night.",
+                  "acceptedAnswers": [
+                    "You chase away the darkness of night.",
+                    "you chase away the darkness of night"
+                  ]
+                }
+              ],
+              "marks": 2,
+              "chapterTag": "The Sun"
+            },
+            {
+              "id": "q5",
+              "type": "unscramble",
+              "question": "Unscramble the words.",
+              "items": [
+                {
+                  "prompt": "LCHOOS",
+                  "answer": "SCHOOL"
+                },
+                {
+                  "prompt": "RWODESTEP",
+                  "answer": "DOORSTEP"
+                },
+                {
+                  "prompt": "NIFDSRF",
+                  "answer": "FRIENDS"
+                },
+                {
+                  "prompt": "PAPHY",
+                  "answer": "HAPPY"
+                },
+                {
+                  "prompt": "IIMN",
+                  "answer": "MINI"
+                },
+                {
+                  "prompt": "RORIFDW",
+                  "answer": "WORRIED"
+                },
+                {
+                  "prompt": "HTREOM",
+                  "answer": "MOTHER"
+                }
+              ],
+              "marks": 7,
+              "chapterTag": "Vocabulary"
+            },
+            {
+              "id": "q6",
+              "type": "word-formation",
+              "question": "Make new words by adding -ful and -less.",
+              "items": [
+                {
+                  "prompt": "Care (-ful / -less)",
+                  "answer": "Careful, Careless",
+                  "acceptedAnswers": [
+                    "careful, careless",
+                    "careful careless"
+                  ]
+                },
+                {
+                  "prompt": "Help (-ful / -less)",
+                  "answer": "Helpful, Helpless",
+                  "acceptedAnswers": [
+                    "helpful, helpless",
+                    "helpful helpless"
+                  ]
+                },
+                {
+                  "prompt": "Color (-ful / -less)",
+                  "answer": "Colorful, Colorless",
+                  "acceptedAnswers": [
+                    "colorful, colorless",
+                    "colourful, colourless",
+                    "colorful colorless"
+                  ]
+                },
+                {
+                  "prompt": "Hope (-ful / -less)",
+                  "answer": "Hopeful, Hopeless",
+                  "acceptedAnswers": [
+                    "hopeful, hopeless",
+                    "hopeful hopeless"
+                  ]
+                },
+                {
+                  "prompt": "Harm (-ful / -less)",
+                  "answer": "Harmful, Harmless",
+                  "acceptedAnswers": [
+                    "harmful, harmless",
+                    "harmful harmless"
+                  ]
+                },
+                {
+                  "prompt": "Use (-ful / -less)",
+                  "answer": "Useful, Useless",
+                  "acceptedAnswers": [
+                    "useful, useless",
+                    "useful useless"
+                  ]
+                },
+                {
+                  "prompt": "Thank (-ful / -less)",
+                  "answer": "Thankful, Thankless",
+                  "acceptedAnswers": [
+                    "thankful, thankless",
+                    "thankful thankless"
+                  ]
+                }
+              ],
+              "marks": 14,
+              "chapterTag": "Grammar"
+            },
+            {
+              "id": "q7",
+              "type": "rhyming-words",
+              "question": "Write a rhyming word for each word. (Write both where shown.)",
+              "items": [
+                {
+                  "prompt": "Sun",
+                  "answer": "Run"
+                },
+                {
+                  "prompt": "Light",
+                  "answer": "Night, Bright",
+                  "acceptedAnswers": [
+                    "night, bright",
+                    "bright, night",
+                    "night bright",
+                    "bright night"
+                  ]
+                },
+                {
+                  "prompt": "Sunshine",
+                  "answer": "Fine",
+                  "acceptedAnswers": [
+                    "Fine"
+                  ]
+                },
+                {
+                  "prompt": "Me",
+                  "answer": "See"
+                },
+                {
+                  "prompt": "Head",
+                  "answer": "Bed"
+                },
+                {
+                  "prompt": "Grow",
+                  "answer": "Slow"
+                },
+                {
+                  "prompt": "Ball",
+                  "answer": "All"
+                }
+              ],
+              "marks": 8,
+              "chapterTag": "Poetry",
+              "reviewNote": "Verify “Sunshine — Sign” against the textbook poem."
+            },
+            {
+              "id": "q8",
+              "type": "sentence",
+              "question": "Make sentences using the given words.",
+              "items": [
+                {
+                  "prompt": "The sun",
+                  "answer": "The sun rises in the east."
+                },
+                {
+                  "prompt": "You",
+                  "answer": "You are my best friend."
+                },
+                {
+                  "prompt": "It",
+                  "answer": "It is very hot."
+                },
+                {
+                  "prompt": "Plant",
+                  "answer": "Plants give us fresh air."
+                }
+              ],
+              "marks": 4,
+              "chapterTag": "Grammar",
+              "manualCheck": true
+            },
+            {
+              "id": "q9",
+              "type": "true-false",
+              "question": "Write True or False for each statement.",
+              "items": [
+                {
+                  "prompt": "The farmer was interviewed by a reporter.",
+                  "answer": "False"
+                },
+                {
+                  "prompt": "The farmer who was interviewed grows flowers.",
+                  "answer": "False"
+                },
+                {
+                  "prompt": "The farmer gets up before sunrise.",
+                  "answer": "True"
+                },
+                {
+                  "prompt": "The drip irrigation method is used for watering the crops.",
+                  "answer": "True"
+                },
+                {
+                  "prompt": "The bulls work very hard in the field.",
+                  "answer": "True"
+                },
+                {
+                  "prompt": "The people of the village were unhappy.",
+                  "answer": "False"
+                },
+                {
+                  "prompt": "Animals can feel our love and care.",
+                  "answer": "True"
+                },
+                {
+                  "prompt": "The bulls were very calm during the festival.",
+                  "answer": "True"
+                },
+                {
+                  "prompt": "The Shekru lives mainly in the Western Ghats.",
+                  "answer": "True"
+                },
+                {
+                  "prompt": "The Shekru lives in the water.",
+                  "answer": "False"
+                },
+                {
+                  "prompt": "The Shekru is the state animal of Maharashtra.",
+                  "answer": "True"
+                },
+                {
+                  "prompt": "The Shekru has a large, powerful beak.",
+                  "answer": "False"
+                }
+              ],
+              "marks": 12,
+              "chapterTag": "Interview of a Farmer; Thank You, Bull!; Shekaru"
+            },
+            {
+              "id": "q10",
+              "type": "opposite",
+              "question": "Write the opposite words.",
+              "items": [
+                {
+                  "prompt": "Poor",
+                  "answer": "Rich"
+                },
+                {
+                  "prompt": "Buy",
+                  "answer": "Sell"
+                },
+                {
+                  "prompt": "Won",
+                  "answer": "Lost"
+                },
+                {
+                  "prompt": "Went",
+                  "answer": "Came"
+                },
+                {
+                  "prompt": "Beginning",
+                  "answer": "End"
+                },
+                {
+                  "prompt": "Large",
+                  "answer": "Small"
+                },
+                {
+                  "prompt": "Opened",
+                  "answer": "Closed"
+                },
+                {
+                  "prompt": "Untied",
+                  "answer": "Neatly"
+                },
+                {
+                  "prompt": "Tiny",
+                  "answer": "Big"
+                },
+                {
+                  "prompt": "After",
+                  "answer": "Before"
+                },
+                {
+                  "prompt": "Bottom",
+                  "answer": "Top"
+                }
+              ],
+              "marks": 11,
+              "chapterTag": "Vocabulary",
+              "reviewNote": "The supplied note said “Untied — Neatly”; “Tied” is the likely intended opposite."
+            },
+            {
+              "id": "q11",
+              "type": "fill-blank",
+              "question": "Fill in the blanks with the correct words.",
+              "items": [
+                {
+                  "prompt": "_____ came home from school.",
+                  "answer": "Sia"
+                },
+                {
+                  "prompt": "Sia felt _____ when Mini was missing.",
+                  "answer": "worried"
+                },
+                {
+                  "prompt": "Mini was a little _____.",
+                  "answer": "cat"
+                },
+                {
+                  "prompt": "Sia felt _____ and sad.",
+                  "answer": "tired"
+                },
+                {
+                  "prompt": "Mini was sitting at the _____.",
+                  "answer": "doorstep"
+                },
+                {
+                  "prompt": "The boy delivered _____ in the morning.",
+                  "answer": "newspaper",
+                  "acceptedAnswers": [
+                    "newspaper",
+                    "newspapers"
+                  ]
+                },
+                {
+                  "prompt": "Mira finally _____ the battle.",
+                  "answer": "won"
+                },
+                {
+                  "prompt": "Mira thought that the boy looked _____.",
+                  "answer": "hungry"
+                }
+              ],
+              "marks": 8,
+              "chapterTag": "Siya and Mini; A Letter to My Friend"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "appName": "Smart Revision & Exam Practice",
+  "version": 1,
+  "description": "Class 4 Computer demo question bank. Replace these sample questions with textbook content.",
+  "settings": {
+    "caseInsensitive": true,
+    "trimAnswers": true,
+    "showCorrectAnswerAfterCheck": true,
+    "shuffleQuestions": false
+  },
+  "subjects": [
+    {
+      "id": "computer-class-4",
+      "name": "Computer",
+      "className": "Class 4",
+      "board": "State Board",
+      "chapters": [
+        {
+          "id": "computer-demo",
+          "name": "Demo Practice",
+          "questions": [
+            {
+              "id": "comp-q1",
+              "type": "short-answer",
+              "question": "Which computer part is used to type letters and numbers?",
+              "items": [{"prompt": "Part name", "answer": "Keyboard"}],
+              "marks": 1,
+              "chapterTag": "Keyboard"
+            },
+            {
+              "id": "comp-q2",
+              "type": "fill-blank",
+              "question": "A mouse helps us point, click, and _____.",
+              "items": [{"prompt": "Complete the sentence", "answer": "select"}],
+              "marks": 1,
+              "chapterTag": "Mouse"
+            },
+            {
+              "id": "comp-q3",
+              "type": "true-false",
+              "question": "A monitor shows pictures and words on a screen.",
+              "items": [{"prompt": "True or false?", "answer": "True"}],
+              "marks": 1,
+              "chapterTag": "Monitor"
+            },
+            {
+              "id": "comp-q4",
+              "type": "short-answer",
+              "question": "Which computer part is often called the brain of the computer?",
+              "items": [{"prompt": "Part name", "answer": "CPU", "acceptedAnswers": ["CPU", "Central Processing Unit"]}],
+              "marks": 1,
+              "chapterTag": "CPU"
+            },
+            {
+              "id": "comp-q5",
+              "type": "short-answer",
+              "question": "Name one device used to print a page from a computer.",
+              "items": [{"prompt": "Device name", "answer": "Printer"}],
+              "marks": 1,
+              "chapterTag": "Computer devices"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

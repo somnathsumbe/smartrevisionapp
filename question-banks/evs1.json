@@ -1,0 +1,67 @@
+{
+  "appName": "Smart Revision & Exam Practice",
+  "version": 1,
+  "description": "Class 4 EVS 1 demo question bank. Replace these sample questions with textbook content.",
+  "settings": {
+    "caseInsensitive": true,
+    "trimAnswers": true,
+    "showCorrectAnswerAfterCheck": true,
+    "shuffleQuestions": false
+  },
+  "subjects": [
+    {
+      "id": "evs-1-class-4",
+      "name": "EVS 1",
+      "className": "Class 4",
+      "board": "State Board",
+      "chapters": [
+        {
+          "id": "evs-1-demo",
+          "name": "Demo Practice",
+          "questions": [
+            {
+              "id": "evs1-q1",
+              "type": "short-answer",
+              "question": "Which part of a plant absorbs water from the soil?",
+              "items": [{"prompt": "Plant part", "answer": "Root"}],
+              "marks": 1,
+              "chapterTag": "Plants"
+            },
+            {
+              "id": "evs1-q2",
+              "type": "fill-blank",
+              "question": "Plants make most of their food in their _____.",
+              "items": [{"prompt": "Plant part", "answer": "leaves", "acceptedAnswers": ["leaf", "leaves"]}],
+              "marks": 1,
+              "chapterTag": "Plants"
+            },
+            {
+              "id": "evs1-q3",
+              "type": "true-false",
+              "question": "Clean water is important for good health.",
+              "items": [{"prompt": "True or false?", "answer": "True"}],
+              "marks": 1,
+              "chapterTag": "Water and health"
+            },
+            {
+              "id": "evs1-q4",
+              "type": "short-answer",
+              "question": "Name one animal that gives us milk.",
+              "items": [{"prompt": "Animal", "answer": "Cow", "acceptedAnswers": ["Cow", "Buffalo", "Goat"]}],
+              "marks": 1,
+              "chapterTag": "Animals"
+            },
+            {
+              "id": "evs1-q5",
+              "type": "short-answer",
+              "question": "What should we put in a dustbin to keep our surroundings clean?",
+              "items": [{"prompt": "What should we put in the dustbin?", "answer": "Waste"}],
+              "marks": 1,
+              "chapterTag": "Our surroundings"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
